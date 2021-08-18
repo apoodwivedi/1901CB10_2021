@@ -6,16 +6,15 @@ def meraki_helper(n):
 
     # iterating through list of input
     for i in range(lengthOfList):
-        is_meraki = True
-        # type casting each number to string for easier navigation through digits
-        element = str(n[i])
+        is_meraki = True     
+        element = str(n[i])   # type casting each number to string for easier navigation through digits
         lengthOfString = len(element)  # length of string
 
         if(lengthOfString == 1):
             is_meraki = True  # single digit number is always meraki
         else:
-            for i in range(0, lengthOfString-1):
-                # checking if the diff between adjacent digits is 1 by casting string back into integer
+            for i in range(0, lengthOfString-1):      # checking if the diff between adjacent digits is 1 by casting string back into integer
+              
                 if(abs(int(element[i])-int(element[i+1])) != 1):
                     is_meraki = False
                     countNonMeraki += 1
