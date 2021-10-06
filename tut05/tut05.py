@@ -27,10 +27,6 @@ subjectName = os.path.join(os.getcwd(), input_file3)
 studentName = os.path.join(os.getcwd(), input_file2)
 
 
-def stargradesFix(grade) -> str:  # DD*, FF* to DD,FF
-    return grade.replace('*', '') if grade[len(grade) - 1] == '*' else grade
-
-
 def overallResult(rolln: str):
     spi = ["SPI"]
     cpi = ["CPI"]
@@ -50,6 +46,9 @@ def overallResult(rolln: str):
             numberOfSems = max(numberOfSems, int(line[1]))
 
     numberOfSems += 1
+
+    def stargradesFix(grade) -> str:  # DD*, FF* to DD,FF
+        return grade.replace('*', '') if grade[len(grade) - 1] == '*' else grade
 
     for x in range(1, numberOfSems):
         creds = 0
@@ -83,7 +82,7 @@ def overallResult(rolln: str):
         cpivalues += spi[s]*semCredits[s]
         cpi.append((cpivalues/cumulativeCreds).__round__(2))
 
-    return name, semNumber, semCredits, totalCredits, spi, cpi
+    return name, semNumber, semCredits,  spi, totalCredits, cpi
 
 
 def generate_marksheet():
@@ -117,7 +116,7 @@ def generate_marksheet():
                 overall = "Overall"
                 wb1.create_sheet(overall)
                 sheet = wb1[overall]
-                name, semN, semCredits, totalCredits, spi, cpi = overallResult(
+                name, semN, semCredits, spi, totalCredits, cpi = overallResult(
                     row[0])
                 sheet.append(["Roll No.", row[0]])
                 sheet.append(name)
